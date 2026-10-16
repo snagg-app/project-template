@@ -1,11 +1,11 @@
 # Project template
 
 Use **Use this template** on GitHub to start a project with the shared
-[Workflow Kit](https://github.com/vaultdex/workflow-kit). The kit and its Ponytail /
+[Workflow Kit](https://github.com/snagg-app/workflow-kit). The kit and its Ponytail /
 Impeccable sources stay pinned Git submodules; improvements arrive as update PRs.
 Add your own application and project-specific contracts without copying kit code.
 
-For agent-guided setup, give your agent the [setup entry](https://github.com/vaultdex/workflow-kit/blob/main/SETUP.md).
+For agent-guided setup, give your agent the [setup entry](https://github.com/snagg-app/workflow-kit/blob/main/SETUP.md).
 It asks for repository, board and integration choices, then performs and verifies setup.
 
 ## Setup
