@@ -50,9 +50,12 @@ in design docs and milestone/issues. Accepted API changes update contracts and
 consumers together; today's API is not immutable. Preserve validation,
 authorization, privacy, integrity and attribution; keep secrets out of clients/logs.
 
-Follow Watchdog's smallest-complete-change rule. Run focused behavior and required
-issue/CI checks; never weaken acceptance or equate mocks with live proof. Keep private artifacts and local generated bundles out of commits; commit only
-required cloud discovery files verified against the pinned sources. Record blocker/recovery and preserve
+Follow the shared engineering rules for the smallest complete change. Run focused
+behavior and required issue/CI checks; never weaken acceptance or equate mocks with
+live proof. Commit the kit's required managed outputs: provider skills, companions,
+hook definitions and discovery, verified against pinned sources. Keep personal
+snapshots, private artifacts, caches and replaced copies out of commits.
+Record blocker/recovery and preserve
 branch/PR. Human review requires completed automatic reviews (or a disclosed
 confirmed outage), dispositioned findings and passed checks; Done requires
 acceptance and merge. Disposition concrete findings with a fix or actionable linked
