@@ -1,6 +1,6 @@
 # Contributors
 
-Start with this file and .vendor/workflow-kit/WATCHDOG.md's engineering rules.
+Start with this file and .vendor/workflow-kit/AGENT_RULES.md.
 Read the applicable sections of .vendor/workflow-kit/docs/CONTRIBUTING.md once when needed;
 reuse them and reread only when relevant rules change. Do not recursively load
 every linked document, generated skill or provider directory.
@@ -61,7 +61,7 @@ follow-up. Update durable docs; report results and uncertainty concisely.
 ## Hook preflight
 
 At session start, check Ponytail and Impeccable hook status in the current harness
-following [hook preflight](.vendor/workflow-kit/docs/agent-hooks.md). Warn once with activation steps
+following [hook rules](.vendor/workflow-kit/AGENT_RULES.md#hooks). Warn once with activation steps
 for confirmed failures or missing/disabled/untrusted hooks. If status is inaccessible,
 continue without a warning or user check request; do not claim automatic execution.
 Files or manual script runs do not prove live activation. Continue unaffected work.

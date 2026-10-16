@@ -21,7 +21,6 @@ jobs:
         with:
           node-version-file: .node-version
           package-manager-cache: false
-      - run: node .vendor/workflow-kit/scripts/init-project.mjs . --existing --check
-      - run: node .vendor/workflow-kit/scripts/check-skills.mjs .
+      - run: node .vendor/workflow-kit/scripts/init-project.mjs . --existing
       - run: node .vendor/workflow-kit/scripts/setup-skills.mjs .
-      - run: git diff --exit-code -- .github/skills .github/agents
+      - run: git add --intent-to-add --all && git diff --exit-code HEAD
