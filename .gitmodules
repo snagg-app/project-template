@@ -1,4 +1,4 @@
 [submodule ".vendor/workflow-kit"]
 	path = .vendor/workflow-kit
-	url = https://github.com/vaultdex/workflow-kit.git
+	url = https://github.com/snagg-app/workflow-kit.git
 	branch = main

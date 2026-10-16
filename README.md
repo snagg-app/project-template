@@ -1,11 +1,11 @@
 # Project template
 
 Use **Use this template** on GitHub to start a project with the shared
-[Workflow Kit](https://github.com/vaultdex/workflow-kit). The kit and its Ponytail /
+[Workflow Kit](https://github.com/snagg-app/workflow-kit). The kit and its Ponytail /
 Impeccable sources stay pinned Git submodules; improvements arrive as update PRs.
 Add your own application and project-specific contracts without copying kit code.
 
-For agent-guided setup, give your agent the [setup entry](https://github.com/vaultdex/workflow-kit/blob/main/SETUP.md).
+For agent-guided setup, give your agent the [setup entry](https://github.com/snagg-app/workflow-kit/blob/main/SETUP.md).
 It asks for repository, board and integration choices, then performs and verifies setup.
 
 ## Setup
@@ -15,13 +15,13 @@ Use Git, Node 26 and authenticated GitHub CLI:
 ```sh
 git clone --recurse-submodules https://github.com/OWNER/REPO.git
 cd REPO
-node .vendor/workflow-kit/scripts/setup-skills.mjs .
-node .vendor/workflow-kit/scripts/check-skills.mjs .
+node .vendor/workflow-kit/scripts/init-project.mjs --existing
+node .vendor/workflow-kit/scripts/setup-skills.mjs
 node .vendor/workflow-kit/scripts/setup-github.mjs OWNER/REPO
 ```
 
-All shared harness commands run directly from the kit. The final `.` selects this
-project for setup, checks and hook installers. This template contains no forwarding
+All shared harness commands run from this project's root and act on its checkout.
+This template contains no forwarding
 scripts; keep only actual product-specific scripts when adding an application.
 
 The final command copies the public board template, links this repository and
@@ -37,8 +37,8 @@ cancelled work must not become Done. No private Vaultdex items are copied.
 After reviewing the checkout, install hooks explicitly:
 
 ```sh
-node .vendor/workflow-kit/scripts/install-ponytail-hooks.mjs .
-node .vendor/workflow-kit/scripts/install-impeccable-hooks.mjs .
+node .vendor/workflow-kit/scripts/install-ponytail-hooks.mjs
+node .vendor/workflow-kit/scripts/install-impeccable-hooks.mjs
 ```
 
 Review/enable hook definitions in each agent. Personal settings and plugin installs
@@ -61,16 +61,22 @@ prefer Renovate, replace the Dependabot config with the kit's documented configu
 For an update PR, inspect the new source revision, then run:
 
 ```sh
+git -C .vendor/workflow-kit fetch origin
+git -C .vendor/workflow-kit checkout <reviewed-kit-commit>
+git add .vendor/workflow-kit
 git submodule update --init --recursive
 node .vendor/workflow-kit/scripts/init-project.mjs . --existing
 node .vendor/workflow-kit/scripts/setup-skills.mjs .
-node .vendor/workflow-kit/scripts/check-skills.mjs .
 ```
 
-Commit refreshed cloud discovery and managed configuration in the same PR. Local
-skill links and bundles are ignored. Edited files are preserved/refused, never
-force-replaced. Changed hook definitions require renewed personal review/trust.
-CI compares committed discovery before setup, so stale generated output fails.
+Commit generated provider skills, companions and managed configuration in the same
+PR. Setup moves replaced skill copies into ignored `.workflow-kit/replaced/`;
+init preserves foreign hook handlers. Personal hook installation and trust remain
+separate steps, including renewed review of changed hook definitions.
+CI regenerates managed configuration and discovery, stages new paths with
+`git add --intent-to-add --all`, then checks `git diff --exit-code HEAD` so missing
+or stale committed output fails. Stage the new gitlink before the submodule
+update; otherwise Git checks out the old pin again.
 
 For upgrades from a wrapper-based template, update any external workspace bootstrap
 and hook-install caller before removing its old entrypoint. `init-project` removes

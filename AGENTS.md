@@ -1,6 +1,6 @@
 # Contributors
 
-Start with this file and .vendor/workflow-kit/WATCHDOG.md's engineering rules.
+Start with this file and .vendor/workflow-kit/AGENT_RULES.md.
 Read the applicable sections of .vendor/workflow-kit/docs/CONTRIBUTING.md once when needed;
 reuse them and reread only when relevant rules change. Do not recursively load
 every linked document, generated skill or provider directory.
@@ -50,9 +50,12 @@ in design docs and milestone/issues. Accepted API changes update contracts and
 consumers together; today's API is not immutable. Preserve validation,
 authorization, privacy, integrity and attribution; keep secrets out of clients/logs.
 
-Follow Watchdog's smallest-complete-change rule. Run focused behavior and required
-issue/CI checks; never weaken acceptance or equate mocks with live proof. Keep private artifacts and local generated bundles out of commits; commit only
-required cloud discovery files verified against the pinned sources. Record blocker/recovery and preserve
+Follow the shared engineering rules for the smallest complete change. Run focused
+behavior and required issue/CI checks; never weaken acceptance or equate mocks with
+live proof. Commit the kit's required managed outputs: provider skills, companions,
+hook definitions and discovery, verified against pinned sources. Keep personal
+snapshots, private artifacts, caches and replaced copies out of commits.
+Record blocker/recovery and preserve
 branch/PR. Human review requires completed automatic reviews (or a disclosed
 confirmed outage), dispositioned findings and passed checks; Done requires
 acceptance and merge. Disposition concrete findings with a fix or actionable linked
@@ -61,7 +64,7 @@ follow-up. Update durable docs; report results and uncertainty concisely.
 ## Hook preflight
 
 At session start, check Ponytail and Impeccable hook status in the current harness
-following [hook preflight](.vendor/workflow-kit/docs/agent-hooks.md). Warn once with activation steps
+following [hook rules](.vendor/workflow-kit/AGENT_RULES.md#hooks). Warn once with activation steps
 for confirmed failures or missing/disabled/untrusted hooks. If status is inaccessible,
 continue without a warning or user check request; do not claim automatic execution.
 Files or manual script runs do not prove live activation. Continue unaffected work.
