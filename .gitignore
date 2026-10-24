@@ -6,3 +6,6 @@
 **/.impeccable/config.local.json
 **/skills/impeccable/scripts/bin/
 /.scratch/
+/.vendor/workflow-kit
+/.claude/skills/*
+!/.claude/skills/impeccable/

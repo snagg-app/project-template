@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+env:
+  WORKFLOW_KIT_REF: 8cd362f21ac84fd87694278eee314d13de2d8f72
 concurrency:
   group: workflow-kit-${{ github.ref }}
   cancel-in-progress: true
@@ -15,12 +17,19 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          submodules: recursive
+          path: project
           persist-credentials: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version-file: .node-version
+          node-version-file: project/.node-version
           package-manager-cache: false
-      - run: node .vendor/workflow-kit/scripts/init-project.mjs . --existing
-      - run: node .vendor/workflow-kit/scripts/setup-skills.mjs .
-      - run: git add --intent-to-add --all && git diff --exit-code HEAD
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: snagg-app/workflow-kit
+          ref: ${{ env.WORKFLOW_KIT_REF }}
+          path: workflow-kit
+          submodules: recursive
+          persist-credentials: false
+      - run: node workflow-kit/scripts/init-project.mjs --cwd project --existing
+      - run: node workflow-kit/scripts/setup-skills.mjs --cwd project --refresh
+      - run: git -C project add --intent-to-add --all && git -C project diff --exit-code HEAD
