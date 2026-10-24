@@ -60,6 +60,12 @@ native checks pass; tests are never ignored. Dependabot handles recognized secur
 updates; its metadata-only queue requests native auto-merge without checking out PR code.
 Version updates come from Renovate to avoid duplicate proposals.
 
+Git-ref submodule updates have no release timestamp and are exempt from the
+three-day release-age rule. If a Kit update changes generated outputs, the
+existing integration check fails until those outputs are committed to that
+same update PR using the commands below. Once checks pass, auto-merge still
+applies to every update type; a red integration check never grants a merge.
+
 Before enabling repository auto-merge in a generated project, configure its required
 checks and their GitHub Apps. Copying a GitHub template does not copy branch protection
 or repository settings. Kit integration proves generated outputs, not future application
