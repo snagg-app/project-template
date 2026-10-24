@@ -54,9 +54,22 @@ Follow [CONTRIBUTING](CONTRIBUTING.md) and [AGENTS.md](AGENTS.md). Fill in your
 architecture, build/test commands and product acceptance. Product CI and Sonar
 project keys are specific to your project; this template does not invent them.
 
-Dependabot proposes kit/Actions updates weekly. Renovate is explicitly disabled to
-avoid duplicate proposals in organizations where its App covers all repos. If you
-prefer Renovate, replace the Dependabot config with the kit's documented configuration.
+Renovate proposes kit, Actions and any subsequently added supported manifest updates.
+All update types, including major and security updates, may auto-merge after required
+native checks pass; tests are never ignored. Dependabot handles recognized security
+updates; its metadata-only queue requests native auto-merge without checking out PR code.
+Version updates come from Renovate to avoid duplicate proposals.
+
+Git-ref submodule updates have no release timestamp and are exempt from the
+three-day release-age rule. If a Kit update changes generated outputs, the
+existing integration check fails until those outputs are committed to that
+same update PR using the commands below. Once checks pass, auto-merge still
+applies to every update type; a red integration check never grants a merge.
+
+Before enabling repository auto-merge in a generated project, configure its required
+checks and their GitHub Apps. Copying a GitHub template does not copy branch protection
+or repository settings. Kit integration proves generated outputs, not future application
+behavior; add appropriate product checks before relying on them.
 
 For an update PR, inspect the new source revision, then run:
 
