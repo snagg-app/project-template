@@ -11,14 +11,14 @@ acceptance, dependencies and evidence; PRs own review. No second task ledger,
 claim PRs or central steering issue.
 Assign every issue a milestone, an explicit Project Priority and matching labels,
 including Backlog and follow-ups; retain metadata after closure.
-See .vendor/workflow-kit/docs/CONTRIBUTING.md#milestones for scope and the ongoing hotfix milestone.
+See .vendor/workflow-kit/docs/CONTRIBUTING.md#issues for scope and the ongoing hotfix milestone.
 
 New issues start in Backlog. Human-authorized triage may promote feasible issues
 to Ready even while dependencies or external blockers remain. Ready is not proof
 that blockers are resolved; resolve them before any start.
 
 Start implementation only from Ready under the start policy in
-.vendor/workflow-kit/docs/CONTRIBUTING.md#board-and-ownership (default: an explicit human request
+.vendor/workflow-kit/docs/CONTRIBUTING.md#starting-work (default: an explicit human request
 for that work). If Ready is empty, analyze Backlog and propose the next executable
 issue with rationale/blockers; do not implement or change status. A human must
 authorize promotion; record readiness before moving to In progress (Doing).
@@ -27,7 +27,7 @@ Existing authorization covers review fixes within the same scope, not new tasks.
 Before work, check issue, dependencies, current main and competing PRs. Use
 codex/<issue>-<topic>, one driver and linked branch/PR. Assignment is not a lock.
 Create issue-linked branches natively; verify PR/issue links after creation and
-before review under .vendor/workflow-kit/docs/CONTRIBUTING.md#issue-branch-and-pr-links.
+before review under .vendor/workflow-kit/docs/CONTRIBUTING.md#pr-backlinks.
 Branch names or mentions alone do not prove linkage; partial work must not close issues.
 Preserve foreign work/ownership; no force-push or admin bypass. Human review/merge
 remain default. Driver owns coordination, integration, proof and delivery;
@@ -41,7 +41,7 @@ PR to Draft/In progress for further work, then Ready for Review/Automated review
 and await reviews again.
 Confirmed review unavailability (e.g. exhausted tokens/quota) permits agent
 completion only with the missing review and cause disclosed; pending/unknown is
-not unavailable. See .vendor/workflow-kit/docs/CONTRIBUTING.md#publication-and-review. Prepare concrete
+not unavailable. See .vendor/workflow-kit/docs/CONTRIBUTING.md#review-loop. Prepare concrete
 results before requesting missing approval; cite the blocking rule and continue
 unaffected work.
 

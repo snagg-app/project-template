@@ -13,8 +13,21 @@
   "platformAutomerge": true,
   "ignoreTests": false,
   "rebaseWhen": "behind-base-branch",
-  "git-submodules": {
-    "enabled": true,
-    "minimumReleaseAge": null
-  }
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.github/workflows/workflow-kit\\.yml$/"],
+      "matchStrings": ["WORKFLOW_KIT_REF: (?<currentDigest>[a-f0-9]{40})"],
+      "currentValueTemplate": "main",
+      "depNameTemplate": "snagg-app/workflow-kit",
+      "packageNameTemplate": "https://github.com/snagg-app/workflow-kit.git",
+      "datasourceTemplate": "git-refs"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["git-refs"],
+      "minimumReleaseAge": null
+    }
+  ]
 }
