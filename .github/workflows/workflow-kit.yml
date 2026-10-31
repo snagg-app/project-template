@@ -5,7 +5,7 @@ on:
 permissions:
   contents: read
 env:
-  WORKFLOW_KIT_REF: 20d0ccabcdd422c3865361d05e13e0c21278bb95
+  WORKFLOW_KIT_REF: 1d644dab262eaf8b62e0d5f6f8a2b1fe81f637ed
 concurrency:
   group: workflow-kit-${{ github.ref }}
   cancel-in-progress: true
